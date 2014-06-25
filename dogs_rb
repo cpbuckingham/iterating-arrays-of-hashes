@@ -1,0 +1,71 @@
+def small_dogs
+    small_dogs_array = []
+    @dogs.each do |value|
+      if value[:size] == :small
+        small_dogs_array.push(value)
+      end
+    end
+    small_dogs_array
+  end
+
+  def huge_dog
+    huge_dog_array = nil
+    @dogs.each do |value|
+      if value[:size] == :huge
+        huge_dog_array = value.select { |k, v| k == :name }
+      end
+    end
+    huge_dog_array
+  end
+
+  def large_dog_names
+    large_dog_array = []
+    @dogs.each do |value|
+      if value[:size] == :large
+        large_dog_array.push(value[:name])
+      end
+    end
+    large_dog_array
+  end
+
+  def joes_large_dogs
+    large_dog_array = []
+    @dogs.each do |value|
+      large_dog_array.push(value[:name]) if value[:size] == :large && value[:owner] == {:name => {:first => "Joe", :last => "Smith"},
+                                                                                        :owner_quality => EXCELLENT}
+    end
+    large_dog_array
+  end
+
+  def sizes
+    dog_size = []
+    @dogs.each do |value|
+      dog_size.push(value[:size])
+    end
+    dog_size.uniq
+  end
+
+  def owners
+    dog_owners = []
+    @dogs.each do |value|
+      dog_owners.push(value[:owner])
+    end
+
+    array = []
+    dog_owners.each do |name|
+      full_name = (name[:name][:first]).to_s + " " + (name[:name][:last]).to_s
+      array.push(full_name)
+    end
+    array.uniq
+  end
+
+  def average_owners
+    array =[]
+    @dogs.each do |name|
+      full_name = (name[:owner][:name][:first]).to_s + " " + (name[:owner][:name][:last]).to_s
+      if (name[:owner][:owner_quality]) == AVERAGE
+      array.push(full_name)
+    end
+    end
+    array.uniq
+  end
